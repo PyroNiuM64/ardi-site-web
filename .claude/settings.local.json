@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npm --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(python --version)",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"$env:USERPROFILE\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\" | Out-Null; New-Item -ItemType Directory -Force -Path \"$env:USERPROFILE\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\data\\\\stacks\" | Out-Null; Write-Output \"Directories created\")",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); node --version; npm --version)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
+    ]
+  }
+}

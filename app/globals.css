@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #F5EDE0;
+  --cream-dark: #EDE0CC;
+  --orange: #C8531C;
+  --orange-light: #D97840;
+  --green: #4A6741;
+  --green-dark: #3A5232;
+  --brown: #2D1B0E;
+  --brown-light: #6B4226;
+  --background: var(--cream);
+  --foreground: var(--brown);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-orange: var(--orange);
+  --color-orange-light: var(--orange-light);
+  --color-green: var(--green);
+  --color-green-dark: var(--green-dark);
+  --color-brown: var(--brown);
+  --color-brown-light: var(--brown-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-nunito), sans-serif;
+  font-size: 1.25rem;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+@keyframes shiny-text {
+  0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width)) 0; }
+  30%, 60% { background-position: calc(100% + var(--shiny-width)) 0; }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fade-in-up { animation: fadeInUp 0.7s ease forwards; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.animate-marquee { animation: marquee var(--duration) linear infinite; }
+.animate-shiny-text { animation: shiny-text 8s infinite; }
+
+.texture-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200,83,28,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(74,103,65,0.06) 0%, transparent 50%);
+}
+
+.brush-stroke {
+  position: relative;
+}
+.brush-stroke::before {
+  content: '';
+  position: absolute;
+  inset: -4px -12px;
+  background: var(--orange);
+  border-radius: 4px 12px 4px 12px;
+  transform: rotate(-1deg);
+  z-index: -1;
+}
+
+.section-divider {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+/* Sticky stacking — each section sticks at end while next rises over it */
+.sticky-section {
+  position: sticky;
+  top: 0;
 }
