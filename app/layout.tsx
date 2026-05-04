@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Chewy, Quicksand } from "next/font/google";
 import "./globals.css";
+import FloatingCTA from "@/components/FloatingCTA";
+import { Analytics } from "@vercel/analytics/next";
 
 const chewy = Chewy({
   variable: "--font-rubik",
@@ -36,6 +38,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-nunito), sans-serif" }}>
         {children}
+        <FloatingCTA />
+        <Analytics />
       </body>
     </html>
   );

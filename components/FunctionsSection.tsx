@@ -115,30 +115,52 @@ export function FunctionsBanner() {
 
 export default function FunctionsSection() {
   return (
-    <div className="grid md:grid-cols-3 gap-6 items-start">
-      {/* Left — 3 function cards */}
-      <div className="space-y-4">
-        {functions.slice(0, 3).map((fn) => (
-          <FunctionCard key={fn.title} fn={fn} videoSide="right" />
-        ))}
-      </div>
-
-      {/* Center — Ardi gif */}
-      <div className="flex flex-col items-center gap-4 sticky top-24">
-        <div className="relative w-full max-w-xs aspect-square drop-shadow-2xl animate-float">
-          <Image src="/Ardi.gif" alt="Ardi le mouton multifonction" fill unoptimized className="object-contain" />
+    <>
+      {/* ── Mobile layout ── */}
+      <div className="md:hidden">
+        {/* Ardi gif centré en haut */}
+        <div className="flex flex-col items-center gap-3 mb-6">
+          <div className="relative w-40 h-40 drop-shadow-2xl animate-float">
+            <Image src="/Ardi.gif" alt="Ardi le mouton multifonction" fill unoptimized className="object-contain" />
+          </div>
+          <p className="text-center text-sm font-semibold flex items-center justify-center gap-2" style={{ color: "var(--green-dark)" }}>
+            <Lauburu size={16} variant="orange" /> 7 usages · 1 objet <Lauburu size={16} variant="orange" />
+          </p>
         </div>
-        <p className="text-center text-sm font-semibold flex items-center justify-center gap-2" style={{ color: "var(--green-dark)" }}>
-          <Lauburu size={16} variant="orange" /> 7 usages · 1 objet <Lauburu size={16} variant="orange" />
-        </p>
+        {/* Toutes les cartes en colonne */}
+        <div className="space-y-3">
+          {functions.map((fn) => (
+            <FunctionCard key={fn.title} fn={fn} videoSide="right" />
+          ))}
+        </div>
       </div>
 
-      {/* Right — 4 function cards */}
-      <div className="space-y-4">
-        {functions.slice(3).map((fn) => (
-          <FunctionCard key={fn.title} fn={fn} videoSide="left" />
-        ))}
+      {/* ── Desktop layout (3 colonnes) ── */}
+      <div className="hidden md:grid md:grid-cols-3 gap-6 items-start">
+        {/* Left — 3 function cards */}
+        <div className="space-y-4">
+          {functions.slice(0, 3).map((fn) => (
+            <FunctionCard key={fn.title} fn={fn} videoSide="right" />
+          ))}
+        </div>
+
+        {/* Center — Ardi gif */}
+        <div className="flex flex-col items-center gap-4 sticky top-24">
+          <div className="relative w-full max-w-xs aspect-square drop-shadow-2xl animate-float">
+            <Image src="/Ardi.gif" alt="Ardi le mouton multifonction" fill unoptimized className="object-contain" />
+          </div>
+          <p className="text-center text-sm font-semibold flex items-center justify-center gap-2" style={{ color: "var(--green-dark)" }}>
+            <Lauburu size={16} variant="orange" /> 7 usages · 1 objet <Lauburu size={16} variant="orange" />
+          </p>
+        </div>
+
+        {/* Right — 4 function cards */}
+        <div className="space-y-4">
+          {functions.slice(3).map((fn) => (
+            <FunctionCard key={fn.title} fn={fn} videoSide="left" />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -60,7 +60,7 @@ export default function Page() {
 
       {/* HERO */}
       <section
-        className="texture-bg relative overflow-hidden py-20 px-6 text-center"
+        className="texture-bg relative overflow-hidden py-12 md:py-20 px-4 md:px-6 text-center"
         style={{ background: "linear-gradient(135deg, #F5EDE0 0%, #EDE0CC 50%, #F5EDE0 100%)" }}
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -72,8 +72,8 @@ export default function Page() {
           />
         </div>
 
-        <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1 text-left">
+        <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="flex-1 text-left md:text-left text-center">
             {/* AnimatedShinyText badge */}
             <div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border"
@@ -85,30 +85,30 @@ export default function Page() {
             </div>
 
             <h1
-              className="text-6xl md:text-7xl font-black mb-4 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 leading-tight"
               style={{ color: "var(--green-dark)", fontFamily: "var(--font-rubik)" }}
             >
               Ardi
             </h1>
-            <p className="text-2xl md:text-3xl font-bold mb-6" style={{ color: "var(--orange)", fontFamily: "var(--font-rubik)" }}>
+            <p className="text-xl md:text-3xl font-bold mb-4 md:mb-6" style={{ color: "var(--orange)", fontFamily: "var(--font-rubik)" }}>
               Le mouton multifonction
             </p>
-            <p className="text-lg mb-8 max-w-lg leading-relaxed" style={{ color: "var(--brown-light)" }}>
+            <p className="text-base md:text-lg mb-6 md:mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed" style={{ color: "var(--brown-light)" }}>
               Le <strong>couteau suisse textile</strong> du Pays Basque. Un porte-clé en laine locale
               qui se transforme en sac, anti-stress, désodorisant, bouillote de poche et bien plus encore.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4">
               <a
                 href="#fonctions"
-                className="px-8 py-4 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-lg"
+                className="px-6 md:px-8 py-3 md:py-4 rounded-full text-white font-bold text-base md:text-lg transition-all hover:scale-105 hover:shadow-lg"
                 style={{ background: "var(--orange)" }}
               >
                 Découvrir Ardi
               </a>
               <a
                 href="#histoire"
-                className="px-8 py-4 rounded-full font-bold text-lg border-2 transition-all hover:scale-105"
+                className="px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg border-2 transition-all hover:scale-105"
                 style={{ borderColor: "var(--green)", color: "var(--green-dark)" }}
               >
                 Notre histoire
@@ -116,7 +116,7 @@ export default function Page() {
             </div>
 
             {/* Stats with NumberTicker */}
-            <div className="flex gap-8 mt-10">
+            <div className="flex justify-center md:justify-start gap-6 md:gap-8 mt-8 md:mt-10">
               <div className="text-center">
                 <div className="text-3xl font-black" style={{ color: "var(--orange)", fontFamily: "var(--font-rubik)" }}>
                   <NumberTicker value={7} />
@@ -140,7 +140,7 @@ export default function Page() {
 
           {/* Hero image */}
           <div className="flex-shrink-0 relative">
-            <div className="w-72 h-72 md:w-96 md:h-96 relative animate-float">
+            <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 relative animate-float">
               <div
                 className="absolute inset-0 rounded-full opacity-20"
                 style={{ background: "radial-gradient(circle, var(--orange) 0%, transparent 70%)" }}
@@ -182,15 +182,15 @@ export default function Page() {
 
       {/* FUNCTIONS SECTION */}
       <div>
-      <section id="fonctions" className="sticky-section py-20 px-6" style={{ background: "var(--cream-dark)", zIndex: 3 }}>
+      <section id="fonctions" className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--cream-dark)", zIndex: 3 }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--green-dark)" }}>
-              <h2 className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--green-dark)" }}>
+              <h2 className="text-2xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Ardi & ses fonctions
               </h2>
             </div>
-            <p className="text-lg mt-4" style={{ color: "var(--brown-light)" }}>
+            <p className="text-base md:text-lg mt-4" style={{ color: "var(--brown-light)" }}>
               Quand le sac est rangé, le mouton travaille.
             </p>
             <hr className="section-divider mt-6" />
@@ -203,11 +203,11 @@ export default function Page() {
 
       {/* ORIGIN / HISTOIRE */}
       <div>
-      <section id="histoire" className="sticky-section py-20 px-6 texture-bg" style={{ background: "var(--cream)", zIndex: 4 }}>
+      <section id="histoire" className="sticky-section py-12 md:py-20 px-4 md:px-6 texture-bg" style={{ background: "var(--cream)", zIndex: 4 }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4 rotate-[1deg]" style={{ background: "var(--orange)" }}>
-              <h2 className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4 rotate-[1deg]" style={{ background: "var(--orange)" }}>
+              <h2 className="text-2xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Notre histoire
               </h2>
             </div>
@@ -225,7 +225,7 @@ export default function Page() {
               {/* Photo équipe */}
               <div
                 className="relative w-full rounded-2xl overflow-hidden border-4 shadow-xl"
-                style={{ height: "260px", borderColor: "var(--orange)" }}
+                style={{ height: "160px", borderColor: "var(--orange)" }}
               >
                 <Image
                   src="/Photo_equipe.png.png"
@@ -282,14 +282,14 @@ export default function Page() {
 
       {/* TIPS */}
       <div>
-      <section id="tips" className="sticky-section py-20 px-6" style={{ background: "var(--green-dark)", zIndex: 5 }}>
+      <section id="tips" className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--green-dark)", zIndex: 5 }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-white mb-4" style={{ fontFamily: "var(--font-rubik)" }}>
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-4" style={{ fontFamily: "var(--font-rubik)" }}>
               Quand le sac est rangé,<br />
               <span style={{ color: "var(--orange-light)" }}>le mouton travaille</span>
             </h2>
-            <p className="text-green-200 text-lg">Quelques tips pour profiter d'Ardi au maximum</p>
+            <p className="text-green-200 text-base md:text-lg">Quelques tips pour profiter d'Ardi au maximum</p>
             <hr
               className="section-divider mt-6"
               style={{ background: "linear-gradient(90deg, transparent, var(--orange-light), transparent)" }}
@@ -334,11 +334,11 @@ export default function Page() {
 
       {/* FABRICATION */}
       <div>
-      <section className="sticky-section py-20 px-6" style={{ background: "var(--cream-dark)", zIndex: 6 }}>
+      <section className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--cream-dark)", zIndex: 6 }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4" style={{ background: "var(--green-dark)" }}>
-              <h2 className="text-3xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4" style={{ background: "var(--green-dark)" }}>
+              <h2 className="text-xl md:text-3xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Architecture du produit
               </h2>
             </div>
@@ -424,11 +424,11 @@ export default function Page() {
 
       {/* VALEURS */}
       <div>
-      <section id="valeurs" className="sticky-section py-20 px-6" style={{ background: "var(--cream)", zIndex: 7 }}>
+      <section id="valeurs" className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--cream)", zIndex: 7 }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
-              <h2 className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
+              <h2 className="text-2xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Nos valeurs
               </h2>
             </div>
@@ -462,7 +462,7 @@ export default function Page() {
             <h3 className="text-2xl font-bold text-center mb-8" style={{ color: "var(--orange)", fontFamily: "var(--font-rubik)" }}>
               Pour qui est Ardi ?
             </h3>
-            <div className="grid md:grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
               {[
                 { Icon: ShoppingCart, label: "Le quotidien", desc: "Consommateurs de tous âges en quête de praticité" },
                 { Icon: Leaf, label: "L'éco-conscient", desc: "Sensibles à l'écologie et aux produits locaux, et curieux des multiples propriétés naturelles de la laine" },
@@ -488,11 +488,11 @@ export default function Page() {
 
       {/* TARIFS */}
       <div>
-      <section className="sticky-section py-20 px-6" style={{ background: "var(--cream)", zIndex: 8 }}>
+      <section className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--cream)", zIndex: 8 }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4 rotate-[1deg]" style={{ background: "var(--green-dark)" }}>
-              <h2 className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4 rotate-[1deg]" style={{ background: "var(--green-dark)" }}>
+              <h2 className="text-2xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Nos tarifs
               </h2>
             </div>
@@ -504,10 +504,10 @@ export default function Page() {
 
             {/* Ardi de base */}
             <div
-              className="relative rounded-3xl p-8 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
+              className="relative rounded-3xl p-5 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
               style={{ background: "var(--cream-dark)", borderColor: "var(--cream-dark)" }}
             >
-              <div className="w-20 h-20 relative mb-4">
+              <div className="w-44 h-44 relative mb-2">
                 <Image src="/Ardi.gif" alt="Ardi" fill unoptimized className="object-contain" />
               </div>
               <h3 className="text-xl font-black mb-1" style={{ color: "var(--green-dark)", fontFamily: "var(--font-rubik)" }}>Ardi</h3>
@@ -528,13 +528,13 @@ export default function Page() {
 
             {/* Ardi + Décapsuleur */}
             <div
-              className="relative rounded-3xl p-8 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
+              className="relative rounded-3xl p-5 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
               style={{ background: "white", borderColor: "var(--orange)" }}
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-black text-white" style={{ background: "var(--orange)" }}>
                 ★ Populaire
               </div>
-              <div className="w-20 h-20 relative mb-4">
+              <div className="w-44 h-44 relative mb-2">
                 <Image src="/Ardi.gif" alt="Ardi" fill unoptimized className="object-contain" />
               </div>
               <h3 className="text-xl font-black mb-1" style={{ color: "var(--green-dark)", fontFamily: "var(--font-rubik)" }}>Ardi + Décapsuleur</h3>
@@ -555,10 +555,10 @@ export default function Page() {
 
             {/* Autocollant */}
             <div
-              className="relative rounded-3xl p-8 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
+              className="relative rounded-3xl p-5 flex flex-col items-center text-center border-2 transition-all hover:scale-[1.03] hover:shadow-xl"
               style={{ background: "var(--cream-dark)", borderColor: "var(--cream-dark)" }}
             >
-              <div className="w-20 h-20 relative mb-4">
+              <div className="w-44 h-44 relative mb-2">
                 <Image src="/Logo_lpb.png" alt="Autocollant La Poche Basque" fill className="object-contain" />
               </div>
               <h3 className="text-xl font-black mb-1" style={{ color: "var(--green-dark)", fontFamily: "var(--font-rubik)" }}>Autocollant</h3>
@@ -612,13 +612,13 @@ export default function Page() {
 
       {/* PAILLAGE */}
       <div>
-      <section id="paillage" className="sticky-section py-20 px-6" style={{ background: "var(--green-dark)", zIndex: 9 }}>
+      <section id="paillage" className="sticky-section py-12 md:py-20 px-4 md:px-6" style={{ background: "var(--green-dark)", zIndex: 9 }}>
         <div className="max-w-5xl mx-auto">
 
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
-              <h2 className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+            <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-4 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
+              <h2 className="text-2xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
                 Paillage naturel
               </h2>
             </div>
@@ -756,7 +756,7 @@ export default function Page() {
       <div>
       <section
         id="contact"
-        className="sticky-section pt-0 pb-20 px-6 text-center relative overflow-hidden"
+        className="sticky-section pt-0 pb-12 md:pb-20 px-4 md:px-6 text-center relative overflow-hidden"
         style={{ background: "var(--green-dark)", zIndex: 10 }}
       >
         <div className="absolute inset-0 pointer-events-none">
@@ -770,16 +770,16 @@ export default function Page() {
           />
         </div>
         <div className="relative max-w-2xl mx-auto">
-          <div className="w-[384px] h-[384px] relative mx-auto mb-8 animate-float">
+          <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-[384px] md:h-[384px] relative mx-auto mb-6 md:mb-8 animate-float">
             <Image src="/Adoptez Ardi.png" alt="Ardi" fill className="object-contain drop-shadow-2xl" />
           </div>
-          <h2 className="text-5xl font-black text-white mb-4" style={{ fontFamily: "var(--font-rubik)" }}>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4" style={{ fontFamily: "var(--font-rubik)" }}>
             Adoptez Ardi
           </h2>
-          <p className="text-xl mb-10" style={{ color: "var(--orange-light)" }}>
+          <p className="text-lg md:text-xl mb-8 md:mb-10" style={{ color: "var(--orange-light)" }}>
             Le couteau suisse textile, basque, durable et utile.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             <a
               href="/contact"
               className="px-10 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-xl"

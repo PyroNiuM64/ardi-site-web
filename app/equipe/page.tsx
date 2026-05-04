@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/Navbar"
+import { useState } from "react"
 import { Mountain, Rabbit, Users, Briefcase, TrendingUp, Heart, Palette, Package } from "lucide-react"
 
 const Lauburu = ({ size = 24, variant = "white" }: { size?: number; variant?: "white" | "orange" }) => {
@@ -40,12 +43,12 @@ const members: Member[] = [
   },
   {
     name: "Eztitxu",
-    role: "PDG Adjoint & Finance Manager",
+    role: "PDG Adjoint & Responsable Financière",
     dept: "Direction",
     desc: "En charge des finances et de la gestion administrative, elle garantit l'équilibre budgétaire et accompagne chaque décision stratégique avec rigueur.",
     quote: "Chaque décision financière est pensée pour assurer la pérennité de notre projet et valoriser la laine basque.",
     photo: "/Eztitxu.png",
-    illustration: "/Direction.png",
+    illustration: "/Finance.png",
     Icon: TrendingUp,
     accent: "green",
     photoShift: -15,
@@ -72,7 +75,7 @@ const members: Member[] = [
     illustration: "/Communication.png",
     Icon: TrendingUp,
     accent: "green",
-    photoShift: -10,
+    photoShift: -25,
   },
   {
     name: "Noémie",
@@ -81,9 +84,10 @@ const members: Member[] = [
     desc: "Noémie est à l'origine de la mascotte Ardi et assiste Eliott sur l'animation des réseaux sociaux. Elle crée du lien avec notre communauté et donne vie au personnage qui représente la marque.",
     quote: "Les réseaux, c'est l'occasion de montrer que derrière Ardi, il y a des gens passionnés et un territoire riche.",
     photo: "/Noemie.png",
-    illustration: "/Communication.png",
+    illustration: "/Mascotte.png",
     Icon: Users,
     accent: "orange",
+    photoShift: -12,
   },
   {
     name: "Octave",
@@ -120,6 +124,12 @@ const depts = [
 ]
 
 export default function EquipePage() {
+  const [selectedDept, setSelectedDept] = useState<string | null>(null)
+
+  const filteredMembers = selectedDept
+    ? members.filter((m) => m.dept === selectedDept)
+    : members
+
   return (
     <main className="min-h-screen" style={{ background: "var(--cream)" }}>
 
@@ -127,7 +137,7 @@ export default function EquipePage() {
 
       {/* HERO */}
       <section
-        className="relative overflow-hidden py-20 px-6 text-center"
+        className="relative overflow-hidden py-12 md:py-20 px-4 md:px-6 text-center"
         style={{ background: "linear-gradient(135deg, var(--green-dark) 0%, #1a3a2a 100%)" }}
       >
         {/* Decorative blobs */}
@@ -147,12 +157,12 @@ export default function EquipePage() {
           </div>
 
           <h1
-            className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
             Notre équipe
           </h1>
-          <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+          <p className="text-base md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
             Sept étudiants du BTS GPN, unis par la passion du Pays Basque et l&apos;envie de valoriser la laine locale à travers Ardi — le mouton multifonction.
           </p>
 
@@ -173,18 +183,18 @@ export default function EquipePage() {
       </section>
 
       {/* TEAM PHOTO */}
-      <section className="py-12 px-6" style={{ background: "var(--cream-dark)" }}>
+      <section className="py-8 md:py-12 px-4 md:px-6" style={{ background: "var(--cream-dark)" }}>
         <div className="max-w-4xl mx-auto">
           <div
             className="relative w-full rounded-3xl overflow-hidden border-4 shadow-2xl"
-            style={{ height: "320px", borderColor: "var(--orange)" }}
+            style={{ height: "220px", borderColor: "var(--orange)" }}
           >
             <Image
               src="/Photo_equipe.png.png"
               alt="L'équipe La Poche Basque"
               fill
               className="object-cover"
-              style={{ objectPosition: "center 45%" }}
+              style={{ objectPosition: "center 43%" }}
               priority
             />
             <div
@@ -203,30 +213,41 @@ export default function EquipePage() {
       {/* ORGANIGRAMME PILL */}
       <section className="py-10 px-6" style={{ background: "var(--cream)" }}>
         <div className="max-w-4xl mx-auto flex flex-wrap gap-3 justify-center">
+          {/* Pill "Tous" */}
+          <button
+            onClick={() => setSelectedDept(null)}
+            className="px-5 py-2 rounded-full text-sm font-bold transition-all hover:scale-105"
+            style={{
+              background: selectedDept === null ? "var(--brown)" : "transparent",
+              color: selectedDept === null ? "white" : "var(--brown)",
+              border: "2px solid var(--brown)",
+            }}
+          >
+            Tous
+          </button>
           {depts.map((d) => (
-            <span
+            <button
               key={d.label}
-              className="px-5 py-2 rounded-full text-sm font-bold text-white"
-              style={{ background: d.color }}
+              onClick={() => setSelectedDept(selectedDept === d.label ? null : d.label)}
+              className="px-5 py-2 rounded-full text-sm font-bold transition-all hover:scale-105"
+              style={{
+                background: selectedDept === d.label ? d.color : "transparent",
+                color: selectedDept === d.label ? "white" : d.color,
+                border: `2px solid ${d.color}`,
+                opacity: selectedDept && selectedDept !== d.label ? 0.5 : 1,
+              }}
             >
               {d.label}
-            </span>
+            </button>
           ))}
         </div>
       </section>
 
       {/* MEMBERS GRID */}
       <section className="py-12 px-6 pb-24" style={{ background: "var(--cream)" }}>
-        <div className="max-w-6xl mx-auto flex flex-col gap-8">
-          {/* Row 1 — 3 members */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {members.slice(0, 3).map((member) => (
-              <MemberCard key={member.name} member={member} />
-            ))}
-          </div>
-          {/* Row 2 — 4 members */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {members.slice(3).map((member) => (
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {filteredMembers.map((member) => (
               <MemberCard key={member.name} member={member} />
             ))}
           </div>
@@ -234,14 +255,14 @@ export default function EquipePage() {
       </section>
 
       {/* VALUES BANNER */}
-      <section className="py-16 px-6" style={{ background: "var(--green-dark)" }}>
+      <section className="py-12 md:py-16 px-4 md:px-6" style={{ background: "var(--green-dark)" }}>
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block px-8 py-4 rounded-2xl mb-6 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
-            <h2 className="text-3xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
+          <div className="inline-block px-5 md:px-8 py-3 md:py-4 rounded-2xl mb-6 rotate-[-1deg]" style={{ background: "var(--orange)" }}>
+            <h2 className="text-xl md:text-3xl font-black text-white" style={{ fontFamily: "var(--font-rubik)" }}>
               Un projet, une équipe, un territoire
             </h2>
           </div>
-          <p className="text-lg mt-4 max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+          <p className="text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
             Ardi est né de la volonté de valoriser la laine des éleveurs du Pays Basque — une ressource locale trop souvent ignorée. Notre équipe d&apos;étudiants s&apos;est emparée de ce défi pour créer un produit authentique, utile et ancré dans un territoire qu&apos;on aime.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -299,8 +320,8 @@ function MemberCard({ member }: { member: Member }) {
     >
       {/* Illustration header */}
       <div
-        className="relative flex flex-col items-center justify-between pt-4 px-6"
-        style={{ background: "var(--cream-dark)", minHeight: 180 }}
+        className="relative flex flex-col items-center justify-between pt-1 px-0"
+        style={{ background: "var(--cream-dark)" }}
       >
         {/* Dept label */}
         <div
@@ -311,12 +332,13 @@ function MemberCard({ member }: { member: Member }) {
         </div>
 
         {/* Role illustration — centrée et lisible */}
-        <div className="relative w-36 h-36 my-2" style={{ opacity: 0.65 }}>
+        <div className="relative w-full h-56 my-0" style={{ opacity: 0.65 }}>
           <Image
             src={member.illustration}
             alt={`Illustration ${member.dept}`}
             fill
             className="object-contain"
+            style={{ transform: "scale(1.4)", transformOrigin: "center" }}
           />
         </div>
 

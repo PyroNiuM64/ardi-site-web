@@ -58,7 +58,7 @@ export default function ContactPage() {
 
       {/* HERO */}
       <section
-        className="relative overflow-hidden py-20 px-6 text-center"
+        className="relative overflow-hidden py-12 md:py-20 px-4 md:px-6 text-center"
         style={{ background: "linear-gradient(135deg, var(--green-dark) 0%, #1a3a2a 100%)" }}
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -74,19 +74,19 @@ export default function ContactPage() {
             <span className="text-white">La Poche Basque</span>
           </div>
           <h1
-            className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
             Nous contacter
           </h1>
-          <p className="text-xl max-w-xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+          <p className="text-base md:text-xl max-w-xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
             Une question sur Ardi, une commande, un partenariat ? On vous répond rapidement.
           </p>
         </div>
       </section>
 
       {/* MAIN CONTENT */}
-      <section className="py-16 px-6" style={{ background: "var(--cream)" }}>
+      <section className="py-10 md:py-16 px-4 md:px-6" style={{ background: "var(--cream)" }}>
         <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-12">
 
           {/* Infos à gauche */}

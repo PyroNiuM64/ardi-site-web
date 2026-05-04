@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useRef, useState } from "react"
+import { Play, X } from "lucide-react"
 
 export type FunctionItem = {
   Icon: React.ElementType
@@ -26,7 +27,9 @@ export default function FunctionCard({
   videoSide?: "left" | "right"
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const mobileVideoRef = useRef<HTMLVideoElement>(null)
   const [hovered, setHovered] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleMouseEnter = () => {
     setHovered(true)
@@ -40,6 +43,20 @@ export default function FunctionCard({
     }
   }
 
+  const handleMobileToggle = () => {
+    if (!fn.video) return
+    const next = !mobileOpen
+    setMobileOpen(next)
+    if (next) {
+      setTimeout(() => mobileVideoRef.current?.play(), 50)
+    } else {
+      if (mobileVideoRef.current) {
+        mobileVideoRef.current.pause()
+        mobileVideoRef.current.currentTime = 0
+      }
+    }
+  }
+
   const imgTransform =
     fn.imgScale || fn.imgY || fn.imgRotate
       ? {
@@ -49,9 +66,10 @@ export default function FunctionCard({
 
   const accent = fn.accent === "orange" ? "var(--orange)" : "var(--green)"
 
+  /* ── Desktop video panel (côté, au survol) ── */
   const videoPanel = fn.video ? (
     <div
-      className="absolute top-0 z-50 pointer-events-none"
+      className="absolute top-0 z-50 pointer-events-none hidden md:block"
       style={{
         [videoSide === "right" ? "left" : "right"]: "calc(100% + 12px)",
         width: 260,
@@ -78,6 +96,46 @@ export default function FunctionCard({
         />
       </div>
     </div>
+  ) : null
+
+  /* ── Mobile video panel (en dessous, au clic) ── */
+  const mobileVideoPanel = fn.video ? (
+    <div
+      className="md:hidden overflow-hidden"
+      style={{
+        maxHeight: mobileOpen ? "300px" : "0",
+        transition: "max-height 0.3s ease",
+      }}
+    >
+      <div
+        className="mt-2 rounded-2xl overflow-hidden border-2 shadow-lg"
+        style={{ borderColor: "var(--orange)", background: "#000" }}
+      >
+        <video
+          ref={mobileVideoRef}
+          src={`/${fn.video}`}
+          loop
+          muted
+          playsInline
+          className="w-full h-auto block"
+        />
+      </div>
+    </div>
+  ) : null
+
+  /* ── Bouton play mobile ── */
+  const playBtn = fn.video ? (
+    <button
+      className="md:hidden flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all active:scale-95"
+      style={{ background: mobileOpen ? "rgba(200,83,28,0.15)" : "rgba(200,83,28,0.1)" }}
+      onClick={(e) => { e.stopPropagation(); handleMobileToggle() }}
+      aria-label={mobileOpen ? "Fermer la vidéo" : "Voir la vidéo"}
+    >
+      {mobileOpen
+        ? <X className="w-3.5 h-3.5" style={{ color: "var(--orange)" }} />
+        : <Play className="w-3 h-3" style={{ color: "var(--orange)" }} />
+      }
+    </button>
   ) : null
 
   /* ── Décapsuleur (option) ── */
@@ -107,7 +165,7 @@ export default function FunctionCard({
             <div className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "rgba(107,66,38,0.2)" }}>
               <fn.Icon className="w-4 h-4" style={{ color: "var(--brown-light)" }} />
             </div>
-            <div>
+            <div className="flex-1">
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-sm" style={{ color: "var(--brown-light)", fontFamily: "var(--font-rubik)" }}>{fn.title}</h3>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(107,66,38,0.12)", color: "var(--brown-light)" }}>
@@ -116,8 +174,10 @@ export default function FunctionCard({
               </div>
               <p className="text-xs leading-relaxed mt-0.5" style={{ color: "var(--brown-light)", opacity: 0.8 }}>{fn.desc}</p>
             </div>
+            {playBtn}
           </div>
         </div>
+        {mobileVideoPanel}
       </div>
     )
   }
@@ -145,10 +205,11 @@ export default function FunctionCard({
               style={{ opacity: 0.15, ...imgTransform }}
             />
           </div>
-          <div className="px-4 pt-3 relative z-10">
+          <div className="px-4 pt-3 relative z-10 flex items-center justify-between">
             <span className="px-3 py-1 rounded-full text-xs font-black text-white" style={{ background: "var(--orange)" }}>
               ★ Fonction principale
             </span>
+            {playBtn}
           </div>
           <div className="relative z-10 p-4 flex items-start gap-3">
             <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--orange)" }}>
@@ -161,6 +222,7 @@ export default function FunctionCard({
             </div>
           </div>
         </div>
+        {mobileVideoPanel}
       </div>
     )
   }
@@ -194,13 +256,15 @@ export default function FunctionCard({
           <div className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center mt-0.5" style={{ background: accent }}>
             <fn.Icon className="w-4 h-4 text-white" />
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="font-bold text-sm leading-tight" style={{ color: "var(--brown)", fontFamily: "var(--font-rubik)" }}>{fn.title}</h3>
             <p className="text-xs font-semibold uppercase tracking-wide mt-0.5 mb-1" style={{ color: accent }}>{fn.subtitle}</p>
             <p className="text-xs leading-relaxed" style={{ color: "var(--brown-light)" }}>{fn.desc}</p>
           </div>
+          {playBtn}
         </div>
       </div>
+      {mobileVideoPanel}
     </div>
   )
 }
