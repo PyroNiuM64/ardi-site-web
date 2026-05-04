@@ -1,0 +1,60 @@
+name: Discord Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+          COMMIT_AUTHOR=$(git log -1 --pretty=format:"%an")
+          COMMIT_SHA=$(git log -1 --pretty=format:"%h")
+          COMMIT_URL="https://github.com/${{ github.repository }}/commit/$(git log -1 --pretty=format:'%H')"
+          SITE_URL="https://ardi-site-web.vercel.app"
+          FILES_CHANGED=$(git diff --name-only HEAD~1 HEAD | head -10 | sed 's/^/• /' | tr '\n' '\n')
+          FILES_COUNT=$(git diff --name-only HEAD~1 HEAD | wc -l | tr -d ' ')
+
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"🚀 Nouveau déploiement — La Poche Basque\",
+                \"description\": \"**$COMMIT_MSG**\",
+                \"color\": 14889556,
+                \"fields\": [
+                  {
+                    \"name\": \"👤 Auteur\",
+                    \"value\": \"$COMMIT_AUTHOR\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"📁 Fichiers modifiés\",
+                    \"value\": \"$FILES_COUNT fichier(s)\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"🔗 Liens\",
+                    \"value\": \"[Voir le commit]($COMMIT_URL) • [Voir le site]($SITE_URL)\",
+                    \"inline\": false
+                  }
+                ],
+                \"footer\": {
+                  \"text\": \"Commit $COMMIT_SHA • Vercel redéploie dans ~1 min\"
+                },
+                \"thumbnail\": {
+                  \"url\": \"https://ardi-site-web.vercel.app/Logo_sobre.png\"
+                }
+              }]
+            }"
