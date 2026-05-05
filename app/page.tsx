@@ -23,7 +23,7 @@ import {
 
 const tips = [
   { Icon: Thermometer, text: "Passez-le au micro-ondes pour réchauffer vos mains", img: "/Micro-ondes.png", label: "Bouillote" },
-  { Icon: Droplets, text: "Lavable en machine en dessous de 20°C", img: "/Lavage.png", label: "Entretien" },
+  { Icon: Droplets, text: "Lavage à la main à l'eau tiède ou froide uniquement", img: "/Lavable Bain.png", label: "Entretien" },
   { Icon: Star, text: "Rembourré avec des noyaux de cerises de confiterie basque", img: "/Cerises.png", label: "Cerises" },
   { Icon: Wind, text: "Sa laine capte les odeurs et l'humidité naturellement", img: "/Absorbe.png", label: "Absorbant" },
 ]
